@@ -18,7 +18,7 @@ const images = [
 ];
 
 // Default image size configuration
-const defaultImageSizeRem = {
+const defaultImageSizePercent = {
     minHeight: 10,
     maxHeight: 20,
 };
@@ -43,7 +43,7 @@ let isHovered = false;
 // Function to generate floating images and append them to the container
 function generateFloatingImages() {
     images.forEach((image, index) => {
-        const size = getRandomSize(defaultImageSizeRem);
+        const size = getRandomSize(defaultImageSizePercent);
         const position = getRandomPosition(container, size.width, size.height);
         const div = createFloatingImageDiv(index, size, position, image);
         container.append(div);
@@ -52,7 +52,7 @@ function generateFloatingImages() {
 
 // Function to create a floating image div
 function createFloatingImageDiv(index, size, position, image) {
-    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}rem; height: ${size.height}rem; top: ${position.top}px; left: ${position.left}px;"><a href="${image.linkUrl}" target="_blank"><img src="${image.imageUrl}" alt="Image ${index + 1}" title="${image.imageTitle}"></a></div>`)
+    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${image.linkUrl}" target="_blank"><img src="${image.imageUrl}" alt="Image ${index + 1}" title="${image.imageTitle}"></a></div>`)
         .hover(
             function () {
                 // Pause animation on hover
@@ -106,8 +106,8 @@ function getRandomPosition(container, newWidth, newHeight) {
 function getRandomSize(sizeConfig) {
     const height = Math.random() * (sizeConfig.maxHeight - sizeConfig.minHeight) + sizeConfig.minHeight;
     const width = height * (3 / 2);
-    if (width > defaultImageSizeRem.maxHeight * (3 / 2)) {
-        const maxWidth = defaultImageSizeRem.maxHeight * (3 / 2);
+    if (width > defaultImageSizePercent.maxHeight * (3 / 2)) {
+        const maxWidth = defaultImageSizePercent.maxHeight * (3 / 2);
         const adjustedHeight = maxWidth / (3 / 2);
         return { width: maxWidth, height: adjustedHeight };
     }
