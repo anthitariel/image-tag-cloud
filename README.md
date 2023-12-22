@@ -39,7 +39,7 @@ Images are defined in the `images` array in the `script.js` file. Each image obj
 Adjust the default image size configuration by modifying the `defaultImageSizeRem` object in the `script.js` file:
 
 ```javascript
-const defaultImageSizeRem = {
+const defaultImageSizePercent = {
     minHeight: 10,
     maxHeight: 20,
 };
