@@ -11,14 +11,14 @@ body {
 
 .image-cloud-container {
     width: 50%;
-    height: 50rem;
+    height: 50%;
     position: relative;
     border: 0.1rem solid #fff;
     border-radius: 1rem;
     z-index: 1;
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 768px) {
     .image-cloud-container {
         width: 90%;
     }

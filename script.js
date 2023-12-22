@@ -40,7 +40,7 @@ function generateFloatingImages(images) {
 
 // Function to create a floating image div
 function createFloatingImageDiv(index, size, position, image) {
-    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${image.url}" target="_blank"><img src="${image.url}" alt="Image ${index + 1}" title="${image.title}"></a></div>`)
+    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${linkUrl}" target="_blank"><img src="${image.url}" alt="Image ${index + 1}" title="${image.title}"></a></div>`)
         .hover(
             function () {
                 // Pause animation on hover
