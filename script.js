@@ -1,21 +1,9 @@
-// Image data array containing URLs, links, and titles
-const images = [
-    {
-        imageUrl: "https://media.istockphoto.com/id/898916122/photo/cat-astronaut-in-space-on-background-of-the-globe-elements-of-this-image-furnished-by-nasa.webp?b=1&s=612x612&w=0&k=20&c=IiOMwmHSLhdbOWiVr_w8tNPs7BftZs7cyB0n-PKZNaE=",
-        linkUrl: "https://anthitariel.github.io/portfolio/",
-        imageTitle: "Lorem Ipsum",
-    },
-    {
-        imageUrl: "https://media.istockphoto.com/id/898916122/photo/cat-astronaut-in-space-on-background-of-the-globe-elements-of-this-image-furnished-by-nasa.webp?b=1&s=612x612&w=0&k=20&c=IiOMwmHSLhdbOWiVr_w8tNPs7BftZs7cyB0n-PKZNaE=",
-        linkUrl: "https://anthitariel.github.io/portfolio/",
-        imageTitle: "Lorem Ipsum",
-    },
-    {
-        imageUrl: "https://media.istockphoto.com/id/496676132/photo/funny-fluffy-cat-skateboarding-in-space.jpg?s=612x612&w=0&k=20&c=CUOxuhxFhKV94SbcBxKwv62b0ItFDOE9hDn9bs5ccXI=",
-        linkUrl: "https://anthitariel.github.io/portfolio/",
-        imageTitle: "Lorem Ipsum",
-    },
-];
+document.addEventListener("DOMContentLoaded", function () {
+    const linkUrl = "https://anthitariel.github.io/portfolio/";
+
+    // Fetch images data
+    $.get("https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=9", function (data) {
+        if (data.success) {
 
 // Default image size configuration
 const defaultImageSizePercent = {
@@ -27,7 +15,7 @@ const defaultImageSizePercent = {
 const container = $(".image-cloud-container");
 
 // Generate floating images
-generateFloatingImages();
+generateFloatingImages(data.photos);
 
 // Set a timeout to start the initial movement and a setInterval to continue movement
 let animationInterval;
@@ -41,7 +29,7 @@ setTimeout(() => {
 let isHovered = false;
 
 // Function to generate floating images and append them to the container
-function generateFloatingImages() {
+function generateFloatingImages(images) {
     images.forEach((image, index) => {
         const size = getRandomSize(defaultImageSizePercent);
         const position = getRandomPosition(container, size.width, size.height);
@@ -52,7 +40,7 @@ function generateFloatingImages() {
 
 // Function to create a floating image div
 function createFloatingImageDiv(index, size, position, image) {
-    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${image.linkUrl}" target="_blank"><img src="${image.imageUrl}" alt="Image ${index + 1}" title="${image.imageTitle}"></a></div>`)
+    return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${image.url}" target="_blank"><img src="${image.url}" alt="Image ${index + 1}" title="${image.title}"></a></div>`)
         .hover(
             function () {
                 // Pause animation on hover
@@ -113,3 +101,9 @@ function getRandomSize(sizeConfig) {
     }
     return { width: width, height: height };
 }
+
+        } else {
+            console.error("Failed to fetch images");
+        }
+    });
+});
