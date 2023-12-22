@@ -22,8 +22,8 @@ let animationInterval;
 
 setTimeout(() => {
     changeImagePosition();
-    animationInterval = setInterval(changeImagePosition, 2000);
-}, 500);
+    animationInterval = setInterval(changeImagePosition, 3000);
+}, 1000);
 
 // Keep track of hover state
 let isHovered = false;
