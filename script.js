@@ -76,7 +76,8 @@ function changeImagePosition() {
                 height: initialSize.height
             };
             const newPosition = getRandomPosition(container, newSize.width, newSize.height);
-            $(this).stop().animate({ top: newPosition.top, left: newPosition.left }).css({ width: newSize.width, height: newSize.height });
+           // Ajust a duration for a smoother movement
+            $(this).stop().animate({ top: newPosition.top, left: newPosition.left, width: newSize.width, height: newSize.height }, 5000);
         }
     });
 }
