@@ -41,17 +41,17 @@ function generateFloatingImages(images) {
 // Function to create a floating image div
 function createFloatingImageDiv(index, size, position, image) {
     return $(`<div class="floatingImage" id="image${index + 1}" style="width: ${size.width}%; height: ${size.height}%; top: ${position.top}px; left: ${position.left}px;"><a href="${linkUrl}" target="_blank"><img src="${image.url}" alt="Image ${index + 1}" title="${image.title}"></a></div>`)
-        .hover(
+        .on('mouseenter touchstart', 
             function () {
-                // Pause animation on hover
-                clearInterval(animationInterval);
+                // Pause animation on hover/touch
+                $(this).clearQueue().stop();
                 // Set a higher z-index for the hovered image
                 $(this).css('z-index', 3);
                 // Set hover state to true
                 isHovered = true;
-            },
-            function () {
-                // Resume animation on hover out
+        })
+        .on('mouseleave touchend', function () {
+                // Resume animation on hover/touch out
                 animationInterval = setInterval(changeImagePosition, 2000);
                 // Restore the z-index for non-hovered images
                 $(this).css('z-index', 2);
@@ -63,8 +63,8 @@ function createFloatingImageDiv(index, size, position, image) {
 
 // Function to change the position and size of images
 function changeImagePosition() {
-    const icons = $(".floatingImage");
-    icons.each(function () {
+    const floatingImage = $(".floatingImage");
+    floatingImage.each(function () {
         if (!isHovered) {
             const container = $(this).parent();
             const initialSize = {
