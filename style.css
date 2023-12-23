@@ -16,6 +16,7 @@ body {
     border: 0.1rem solid #fff;
     border-radius: 1rem;
     z-index: 1;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5); 
 }
 
 .floatingImage {
@@ -25,6 +26,7 @@ body {
     border-radius: 0.5rem;
     transition: transform 0.5s ease-in-out;
     opacity: 0.5;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
 }
 
 .floatingImage:hover {

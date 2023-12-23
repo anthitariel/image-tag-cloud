@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const linkUrl = "https://anthitariel.github.io/portfolio/";
+    const linkUrl = "https://github.com/anthitariel/image-tag-cloud";
 
     // Fetch images data
     $.get("https://api.slingacademy.com/v1/sample-data/photos?offset=5&limit=9", function (data) {
